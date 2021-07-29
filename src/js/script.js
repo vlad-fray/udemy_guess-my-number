@@ -6,27 +6,35 @@ let score = null;
 let highscore = 0;
 let difficulty = 1;
 
-document.querySelector('.difficulty').addEventListener('click', function () {
-	if (difficulty < 3) difficulty++;
-	document.querySelector('.difficulty-lvl').textContent = `Lvl: ${difficulty}`;
-	startGame();
-});
+document
+	.querySelector('.difficulty')
+	.addEventListener('click', function () {
+		if (difficulty < 3) difficulty++;
+		document.querySelector(
+			'.difficulty-lvl'
+		).textContent = `Lvl: ${difficulty}`;
+		startGame();
+	});
 
-document.querySelector('.check').addEventListener('click', function () {
-	const guess = +document.querySelector('.guess').value;
-	displayMessage(checkGuess(guess));
-	if (score >= 1 && guess === number) {
-		winGame();
-	} else if (score > difficulty) {
-		changeScore(score - difficulty);
-	} else {
-		loseGame();
-	}
-});
+document
+	.querySelector('.check')
+	.addEventListener('click', function () {
+		const guess = +document.querySelector('.guess').value;
+		displayMessage(checkGuess(guess));
+		if (score >= 1 && guess === number) {
+			winGame();
+		} else if (score > difficulty) {
+			changeScore(score - difficulty);
+		} else {
+			loseGame();
+		}
+	});
 
-document.querySelector('.again').addEventListener('click', function () {
-	startGame();
-});
+document
+	.querySelector('.again')
+	.addEventListener('click', function () {
+		startGame();
+	});
 
 const checkGuess = (guess) => {
 	if (!guess) {
@@ -75,7 +83,7 @@ const changeRange = (num) => {
 
 const winGame = () => {
 	changeHighscore(score);
-	changeNumber(number, '30rem');
+	changeNumber(number, '20rem');
 	toggleCheckAccess(true);
 	document.querySelector('body').style.backgroundColor = '#60b347';
 };
@@ -91,7 +99,7 @@ const startGame = () => {
 	score = 20;
 	displayMessage('Start guessing...');
 	document.querySelector('body').style.backgroundColor = '#222';
-	changeNumber('?', '15rem');
+	changeNumber('?', '10rem');
 	document.querySelector('.guess').value = '';
 	changeScore(20);
 	toggleCheckAccess(false);
